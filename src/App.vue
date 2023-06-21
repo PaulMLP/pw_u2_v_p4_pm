@@ -1,8 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <Contador titulo="Test One" valor dos="7"/>
-  <Contador titulo="Test Two" valor dos="7"/>
-   <Contador titulo="Test Tree" valor dos="7"/>
+  <Contador title="Test One" :start="400+2"/>
+  <Contador title="Test Two" :start="101"/>
 </template>
 
 <script>

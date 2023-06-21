@@ -1,6 +1,5 @@
 <template>
-  <h3>{{ componentTitle }}</h3>
-  <h3>{{ titulo }}</h3>
+  <h3>{{ titleValidation }}</h3>
   <p>{{ number }} <sup>2</sup> = {{ getSquareComputed }}</p>
   <p>{{ number }} <sup>2</sup> = {{ getSquareComputed }}</p>
   <p>{{ number }} <sup>2</sup> = {{ getSquareComputed }}</p>
@@ -13,8 +12,8 @@ export default {
   name: "Contador",
   data() {
     return {
-      number: 5,
-      componentTitle: this.titulo,
+      number: this.start,
+      componentTitle: this.title,
     };
   },
   methods: {
@@ -34,8 +33,21 @@ export default {
       console.log("Entro al metodo cuadrado commputado");
       return this.number * this.number;
     },
+    titleValidation() {
+      return this.componentTitle || "Valor por defecto";
+    },
   },
-  props: ["titulo", "valor dos"],
+  props: {
+    title: String,
+    start: {
+      type: Number,
+      required: false,
+      default: 100,
+      validator(value) {
+        return value > 100;
+      },
+    },
+  },
 };
 </script>
 

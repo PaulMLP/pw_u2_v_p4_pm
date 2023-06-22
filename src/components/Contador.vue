@@ -66,7 +66,6 @@ button {
 
 button:hover {
   transform: scale(1.1);
-  transition: 0.5s transform;
   font-weight: bold;
   box-shadow: 0 0 6px 1px #35495e;
 }

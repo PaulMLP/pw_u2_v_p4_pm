@@ -1,16 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" />
   <Contador title="Test One" :start="400+2"/>
-  <Contador title="Test Two" :start="101"/>
+  <Contador title="Test Two" :start="101"/> -->
+  <CaracolaMagica/>
 </template>
 
 <script>
+import CaracolaMagica from './components/CaracolaMagica.vue';
 import Contador from "./components/Contador.vue";
 
 export default {
   name: "App",
   components: {
     Contador,
+    CaracolaMagica,
   },
 };
 </script>

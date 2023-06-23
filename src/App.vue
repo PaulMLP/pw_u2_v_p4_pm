@@ -25,9 +25,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
-img {
-  filter: drop-shadow(10px 5px 1px rgb(0, 0, 0, 0.6));
 }
 </style>

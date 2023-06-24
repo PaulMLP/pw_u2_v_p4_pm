@@ -1,19 +1,14 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" />
-  <Contador title="Test One" :start="400+2"/>
-  <Contador title="Test Two" :start="101"/> -->
-  <CaracolaMagica/>
+  <PokemonPage />
 </template>
 
 <script>
-import CaracolaMagica from './components/CaracolaMagica.vue';
-import Contador from "./components/Contador.vue";
+import PokemonPage from "./modules/pokemon/pages/PokemonPage.vue";
 
 export default {
   name: "App",
   components: {
-    Contador,
-    CaracolaMagica,
+    PokemonPage,
   },
 };
 </script>
@@ -24,6 +19,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 </style>

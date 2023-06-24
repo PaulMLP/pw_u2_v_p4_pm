@@ -1,18 +1,24 @@
 <template>
   <div class="container">
-    <h1>Caracola Mágica</h1>
     <img class="main-image" alt="Main image" src="../assets/caracola.png" />
-    <div class="bg-dark"></div>
-            <img
-          class="answer-img"
-          :src="urlImage"
-          alt="answer image"
-        />
-    <div class="answer-container">
+    <img
+      v-if="imageShow"
+      class="answer-img"
+      :src="urlImage"
+      alt="No se puede presentar la imagen"
+    />
+
+    <div class="bg-dark">
+      <strong v-if="win">YOU WIN!!</strong>
+    </div>
+
+    <div class="contenedor">
+      <h1>Caracola Mágica</h1>
       <input type="text" placeholder="Hazme una pregunta" v-model="question" />
-      <p>Recuerda terminar con un signo de interrogación</p>
+      <p>Recuerda Terminar con el signo "?"</p>
       <div>
         <h2>{{ question }}</h2>
+        <h2>{{ questionAux }}</h2>
         <h1>{{ answer }}</h1>
       </div>
     </div>
@@ -23,9 +29,13 @@
 export default {
   data() {
     return {
-      question: "Hola Mundo",
+      imageShow: false,
+      question: "",
+      questionAux: "",
       answer: "",
       urlImage: "",
+      win: false,
+      countWin: 0,
     };
   },
 
@@ -35,6 +45,7 @@ export default {
       console.log(oldvalue);
       if (value.includes("?")) {
         console.log("Consumir el API");
+        this.questionAux = "pensando...";
         this.consumeAPI();
       }
     },
@@ -48,27 +59,36 @@ export default {
       console.log(image);
       this.answer = answer;
       this.urlImage = image;
+      this.imageShow = true;
+      this.win = this.yesVerify(this.answer);
+    },
+    yesVerify(answer) {
+      if (answer.toLowerCase() == "yes") {
+        this.countWin++;
+        console.log(this.countWin);
+        if (this.countWin == 3) {
+          this.countWin = 0;
+          return true;
+        }
+      }
+      return false;
     },
   },
 };
 </script>
 
 <style>
-:root {
-  --widthImg: 250px;
-}
-body {
-  background: linear-gradient(#59c4cc, #3373e2);
-}
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   height: 100vh;
   color: white;
 }
+
 .main-image {
-  width: var(--widthImg);
+  width: 250px;
   filter: drop-shadow(0 0 10px #ffff);
   animation: shake 1s ease-in-out infinite;
 }
@@ -98,37 +118,38 @@ body {
 
 .answer-img,
 .bg-dark {
-  left: 0;
-  top: 0;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
+  left: 0px;
   max-height: 100%;
-  max-height: 100%;
+  max-width: 100%;
   position: fixed;
+  top: 0px;
 }
 
 .bg-dark {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.answer-container{
+.contenedor {
   position: relative;
 }
 
-p{
-  margin-top: 15px;
+input {
+  width: 250px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
 }
 
-input {
-  margin-top: 10px;
-  width: var(--widthImg);
-  padding: 10px 15px;
-  outline: none;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid white;
+p,
+h1,
+h2 {
   color: white;
-  font-weight: bold;
-  font-size: 20px;
+}
+
+p {
+  font-size: 25px;
+  margin-top: 20px;
 }
 </style>

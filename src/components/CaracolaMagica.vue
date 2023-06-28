@@ -7,19 +7,20 @@
       :src="urlImage"
       alt="No se puede presentar la imagen"
     />
-
     <div class="bg-dark">
       <strong v-if="win">YOU WIN!!</strong>
     </div>
 
     <div class="contenedor">
-      <h1>Caracola Mágica</h1>
+      <h1 class="titulo">Caracola Mágica</h1>
       <input type="text" placeholder="Hazme una pregunta" v-model="question" />
       <p>Recuerda Terminar con el signo "?"</p>
       <div>
         <h2>{{ question }}</h2>
         <h2>{{ questionAux }}</h2>
         <h1>{{ answer }}</h1>
+        <h3>Yes: {{ countWin }}</h3>
+        <div class="circulo"></div>
       </div>
     </div>
   </div>
@@ -60,18 +61,19 @@ export default {
       this.answer = answer;
       this.urlImage = image;
       this.imageShow = true;
-      this.win = this.yesVerify(this.answer);
+      this.win = this.yesVerify();
     },
-    yesVerify(answer) {
-      if (answer.toLowerCase() == "yes") {
+    yesVerify() {
+      if (this.answer.toLowerCase() == "yes") {
         this.countWin++;
         console.log(this.countWin);
-        if (this.countWin == 3) {
-          this.countWin = 0;
+        if (this.countWin == 1) {
           return true;
         }
+      } else {
+        this.countWin = 0;
+        return false;
       }
-      return false;
     },
   },
 };
@@ -89,7 +91,7 @@ export default {
 
 .main-image {
   width: 250px;
-  filter: drop-shadow(0 0 10px #ffff);
+  filter: drop-shadow(0 0 20px #e7d409);
   animation: shake 1s ease-in-out infinite;
 }
 @keyframes shake {
@@ -111,9 +113,6 @@ export default {
   50% {
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(0);
-  }
 }
 
 .answer-img,
@@ -129,6 +128,9 @@ export default {
 
 .bg-dark {
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .contenedor {
@@ -151,5 +153,21 @@ h2 {
 p {
   font-size: 25px;
   margin-top: 20px;
+}
+
+strong {
+  font-size: 80px;
+  text-shadow: 0 0 10px #e7d409, 0 0 30px white;
+  margin-top: 100px;
+  animation: emphasis 0.6s linear infinite;
+}
+
+@keyframes emphasis {
+  50% {
+    font-size: 120px;
+  }
+  100% {
+    font-size: 80px;
+  }
 }
 </style>

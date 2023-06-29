@@ -56,8 +56,6 @@ export default {
       const reply = await fetch("https://yesno.wtf/api").then((r) => r.json());
       console.log(reply);
       const { answer, image } = reply;
-      console.log(answer);
-      console.log(image);
       this.answer = answer;
       this.urlImage = image;
       this.imageShow = true;
@@ -66,7 +64,6 @@ export default {
     yesVerify() {
       if (this.answer.toLowerCase() == "yes") {
         this.countWin++;
-        console.log(this.countWin);
         if (this.countWin == 1) {
           return true;
         }
@@ -79,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   flex-direction: column;

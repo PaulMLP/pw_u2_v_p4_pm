@@ -1,16 +1,20 @@
 <template>
   <div class="contenedor-opciones">
     <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
+      <li v-for="pokemon in options" :key="pokemon.id">{{pokemon.name}}</li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    options: {
+      type: Array,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -32,12 +36,19 @@ li {
   width: 250px;
   height: 30px;
   cursor: pointer;
-  transition: .6s;
+  background-color: white;
+  transition: 0.6s;
 }
 
 li:hover {
   background: #333;
   color: white;
   transform: scale(1.1);
+}
+
+li:active {
+  transform: scale(1.02);
+  border: 3px solid yellow;
+  color: yellow;
 }
 </style>

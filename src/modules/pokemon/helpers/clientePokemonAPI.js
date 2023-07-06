@@ -30,14 +30,23 @@ const getPokemonNames = async ([id1, id2, id3, id4] = []) => {
   const data2 = await consumeAPI(id2);
   const data3 = await consumeAPI(id3);
   const data4 = await consumeAPI(id4);
-  console.log(data1.name);
-  console.log(data2.name);
-  console.log(data3.name);
-  console.log(data4.name);
-  const obj1 = { name: data1.name, id: data1.id };
-  const obj2 = { name: data2.name, id: data2.id };
-  const obj3 = { name: data3.name, id: data3.id };
-  const obj4 = { name: data4.name, id: data4.id };
+
+  const obj1 = {
+    name: data1.name.replace(/^\w/, (c) => c.toUpperCase()),
+    id: data1.id,
+  };
+  const obj2 = {
+    name: data2.name.replace(/^\w/, (c) => c.toUpperCase()),
+    id: data2.id,
+  };
+  const obj3 = {
+    name: data3.name.replace(/^\w/, (c) => c.toUpperCase()),
+    id: data3.id,
+  };
+  const obj4 = {
+    name: data4.name.replace(/^\w/, (c) => c.toUpperCase()),
+    id: data4.id,
+  };
 
   return [obj1, obj2, obj3, obj4];
 };

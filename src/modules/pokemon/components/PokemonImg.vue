@@ -1,13 +1,14 @@
 <template>
-  <div class="contenedor-imagenes">
+  <div class="contenedor-imagen">
     <img
-      class="oculta-pokemon"
+      v-if="!muestraPockemon"
+      class="ocultar-pokemon"
       :src="imagenFuente"
       alt="no se carga la imagen"
     />
     <img
+      v-else
       class="mostrar-pokemon"
-      v-if="muestraPockemon"
       :src="imagenFuente"
       alt="no se carga la imagen"
     />
@@ -40,41 +41,35 @@ export default {
 </script>
 
 <style scoped>
-.contenedor-imagenes {
-  position: relative;
-  height: 300px;
+.contenedor-imagen {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 30px;
+  height: 250px;
 }
-
-.mostrar-pokemon,
-.oculta-pokemon {
-  position: absolute;
-  height: 80%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.oculta-pokemon {
+.ocultar-pokemon {
+  height: 90%;
   filter: brightness(0);
 }
-
 .mostrar-pokemon {
+  height: 90%;
   animation: change 1s linear infinite;
 }
 
 @keyframes change {
   0%,
   100% {
-    filter: drop-shadow(0 10px 1px red) drop-shadow(0 0 20px white) drop-shadow(0 0 30px cyan);
+    filter: drop-shadow(0 10px 1px red) drop-shadow(0 0 20px white);
   }
   25% {
-    filter: drop-shadow(0 10px 1px blue) drop-shadow(0 0 20px white) drop-shadow(0 0 30px cyan);
+    filter: drop-shadow(0 10px 1px blue) drop-shadow(0 0 20px white);
   }
   50% {
-    filter: drop-shadow(0 10px 1px green) drop-shadow(0 0 20px white) drop-shadow(0 0 30px cyan);
+    filter: drop-shadow(0 10px 1px green) drop-shadow(0 0 20px white);
   }
   75% {
-    filter: drop-shadow(0 10px 1px yellow) drop-shadow(0 0 30px white) drop-shadow(0 0 50px cyan);
+    filter: drop-shadow(0 10px 1px yellow) drop-shadow(0 0 30px white);
   }
 }
 </style>

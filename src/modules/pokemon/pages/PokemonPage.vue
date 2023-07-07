@@ -73,7 +73,6 @@ export default {
       this.pokemonsArray = await getPokemonFacade();
       const indicePokemon = Math.floor(Math.random() * 4);
       this.pokemonCorrecto = this.pokemonsArray[indicePokemon];
-      console.log("pokemon correcto: " + this.pokemonCorrecto.name);
     },
     manejoDatoOpciones(idSeleccionado) {
       this.verificarEleccion(idSeleccionado);

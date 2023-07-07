@@ -1,5 +1,6 @@
 html,
 body {
-    background:linear-gradient(to top left,#ef3522, #d6d6d6) ;
-    background-attachment: fixed;
+  background: linear-gradient(to top left, #ef3522, #d6d6d6);
+  background-attachment: fixed;
+  height: 100vh;
 }

@@ -1,49 +1,52 @@
 <template>
-  <div v-if="!showResult" class="contenedor">
-    <h1>Juego Pokemon</h1>
-    <div class="info">
-      <div class="puntaje">Puntaje: {{ puntaje }}</div>
-      <div class="intentos">Intentos: {{ intentos }}</div>
-    </div>
-    <h1 v-if="!pokemonCorrecto">Espere por favor...</h1>
-    <div v-else class="juego">
-      <PokemonImg
-        :pockemonId="pokemonCorrecto.id"
-        :muestraPockemon="showPokemon"
-      ></PokemonImg>
-      <PokemonOps
-        :options="pokemonsArray"
-        @seleccionar="manejoDatoOpciones($event)"
-      />
-    </div>
-  </div>
-  <div v-else class="resultado">
-    <h1 id="nombre-correcto">Es {{ pokemonCorrecto.name }}!!</h1>
-    <div :class="ganar ? 'win' : 'lose'">
-      <div class="mensaje">
-        <strong>{{ ganar ? "GANASTE!!" : "PERDISTE!!" }}</strong>
+  <div class="page">
+    <div v-if="!showResult" class="contenedor">
+      <h1 id="titulo">Juego Pokemon</h1>
+      <div class="info">
+        <div class="puntaje">Puntaje: {{ puntaje }}</div>
+        <div class="intentos">Intentos: {{ intentos }}</div>
       </div>
-      <PokemonImg
-        :pockemonId="pokemonCorrecto.id"
-        :muestraPockemon="showPokemon"
-      ></PokemonImg>
-      <div class="puntajeResultado">
-        <img
-          class="gif"
-          :src="
-            ganar
-              ? 'https://www.icegif.com/wp-content/uploads/2022/01/icegif-1479.gif'
-              : 'https://64.media.tumblr.com/f87e82f01cf7da8d92d005685ce86d05/tumblr_mrqt8vUPk91sapdi7o1_500.gif'
-          "
-          :alt="ganar ? 'gif win no carga' : 'gif lose no carga'"
+      <h1 v-if="!pokemonCorrecto">Espere por favor...</h1>
+      <div v-else class="juego">
+        <PokemonImg
+          :pockemonId="pokemonCorrecto.id"
+          :muestraPockemon="showPokemon"
+        ></PokemonImg>
+        <PokemonOps
+          class="opciones"
+          :options="pokemonsArray"
+          @seleccionar="manejoDatoOpciones($event)"
         />
-        <div>
-          Tu puntaje fue de {{ puntaje }} <br />
-          Intento {{ intentos }}
+      </div>
+    </div>
+    <div v-else class="resultado">
+      <h1 id="nombre-correcto">Es {{ pokemonCorrecto.name }}!!</h1>
+      <div :class="ganar ? 'win' : 'lose'">
+        <div class="mensaje">
+          <strong>{{ ganar ? "GANASTE!!" : "PERDISTE!!" }}</strong>
+        </div>
+        <PokemonImg
+          :pockemonId="pokemonCorrecto.id"
+          :muestraPockemon="showPokemon"
+        ></PokemonImg>
+        <div class="puntajeResultado">
+          <img
+            class="gif"
+            :src="
+              ganar
+                ? 'https://www.icegif.com/wp-content/uploads/2022/01/icegif-1479.gif'
+                : 'https://64.media.tumblr.com/f87e82f01cf7da8d92d005685ce86d05/tumblr_mrqt8vUPk91sapdi7o1_500.gif'
+            "
+            :alt="ganar ? 'gif win no carga' : 'gif lose no carga'"
+          />
+          <div>
+            Tu puntaje fue de {{ puntaje }} <br />
+            Intento {{ intentos }}
+          </div>
         </div>
       </div>
+      <button @click="reiniciar">Nuevo Juego</button>
     </div>
-    <button @click="reiniciar">Nuevo Juego</button>
   </div>
 </template>
 
@@ -118,6 +121,16 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  background: linear-gradient(to top, #459cd6,#d2d2d2 80%);
+  background-attachment: fixed;
+  width: 100%;
+  height: 100vh;
+}
+
+#titulo {
+  text-align: center;
+}
 h1,
 .intentos,
 .puntaje {
@@ -130,14 +143,13 @@ h1,
   font-size: 25px;
   font-weight: bold;
 }
-.juego,
+.contenedor,
 .resultado {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 40px;
 }
 .win,
 .lose {
@@ -180,8 +192,9 @@ strong {
   width: 120px;
 }
 button {
-  width: 150px;
-  height: 30px;
+  font-size: 1.2rem;
+  height: 40px;
+  background: #d6d6d6;
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;

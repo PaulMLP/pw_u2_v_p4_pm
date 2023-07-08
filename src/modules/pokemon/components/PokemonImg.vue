@@ -45,7 +45,7 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-bottom: 30px;
+  margin: 20px 0px;
   height: 250px;
 }
 .ocultar-pokemon {

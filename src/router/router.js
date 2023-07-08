@@ -7,15 +7,11 @@ const routes = [
   },
   {
     path: "/juego",
-    component: () => import("../modules/pokemon/pages/JuegoPage"),
+    component: () => import("../modules/pokemon/pages/PokemonPage"),
   },
   {
     path: "/premios",
     component: () => import("../modules/pokemon/pages/PremiosPage"),
-  },
-  {
-    path: "/pokemon",
-    component: () => import("../modules/pokemon/pages/PokemonPage"),
   },
   {
     path: "/:pathMatch(.*)*", //wildcard
